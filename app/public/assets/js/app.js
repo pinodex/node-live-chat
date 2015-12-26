@@ -1,7 +1,24 @@
 (function() {
   'use strict';
 
-  var channel, username;
+  var username = '';
+  var body = document.querySelector('body');
+
+  function getMessageElement(username, message) {
+    var item = angular.element('<li />');
+    var usernameEl = angular.element('<strong />');
+    var messageEl = angular.element('<span />');
+      
+    usernameEl.text(username);
+    messageEl.text(message);
+      
+    item.append(usernameEl).append(messageEl);
+    return item;
+  }
+
+  function scrollToBottom() {
+    body.scrollTop = body.scrollHeight;
+  }
 
   var nodeLiveChat = angular.module('nodeLiveChat', [
     'ngRoute'
@@ -71,27 +88,10 @@
 
   nodeLiveChat.controller('ChatWindowCtrl', function($scope, $location) {
     var chat = new Chat(socketUrl);
-    var body = document.querySelector('body');
     var messagesDom = document.getElementById('messages');
     var messages = angular.element(messagesDom);
 
-    var getMessageElement = function(username, message) {
-      var item = angular.element('<li />');
-      var usernameEl = angular.element('<strong />');
-      var messageEl = angular.element('<span />');
-      
-      usernameEl.text(username);
-      messageEl.text(message);
-      
-      item.append(usernameEl).append(messageEl);
-      return item;
-    };
-
-    var scrollToBottom = function() {
-      body.scrollTop = body.scrollHeight;
-    };
-
-    chat.login(channel, username);
+    chat.login(username);
 
     chat.onServerMessage(function(message) {
       var item = getMessageElement('', message);

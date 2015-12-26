@@ -64,10 +64,12 @@
     });
   };
 
-  Chat.prototype.login = function(channel, username) {
-    this.socket.emit('chat:join', {
+  Chat.prototype.login = function(username, callback) {
+    this.socket.emit('chat:login', {
       username: username
     });
+
+    this.socket.on('chat:login', callback || function() {});
   };
 
   Chat.prototype.type = function(message) {

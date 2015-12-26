@@ -23,7 +23,7 @@ var chat = function Chat(io) {
       }
     });
 
-    socket.on('chat:join', function(data) {
+    socket.on('chat:login', function(data) {
       if (!pattern.test(data.username)) {
         socket.emit('chat:disconnect', 'Username contains invalid characters.');
         return;
@@ -38,7 +38,11 @@ var chat = function Chat(io) {
       }
 
       users[socket.id] = data.username;
+      
       socket.broadcast.emit('message:server', data.username + ' joined the chat');
+      
+      socket.emit('chat:login');
+      socket.emit('message:server', 'Start chatting by typing in the message box below.');
     });
 
     socket.on('message:type', function(message) {
