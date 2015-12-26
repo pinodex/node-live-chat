@@ -1,0 +1,19 @@
+{% extends '_layouts/main.html' %}
+
+{% block body %}
+  <div class="chat-window" ng-controller="ChatWindowCtrl">
+    <div class="messages">
+      <div class="pad">
+        <ul id="messages"></ul>
+      </div>
+    </div>
+    <div class="composer">
+      <form ng-submit="send()">
+        <div class="pad">
+          <input name="message" ng-model="message" ng-change="type()" placeholder="Type a message" />
+        </div>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

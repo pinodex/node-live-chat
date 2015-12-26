@@ -1,0 +1,16 @@
+{% extends '_layouts/main.html' %}
+
+{% block body %}
+  <div class="middle">
+    <div class="content">
+      <div ng-controller="JoinRoomFormCtrl" ng-init="channel = 'global'">
+        <form class="login" ng-submit="login()" autocomplete="off" spellcheck="false">
+          <div class="input" ng-class="{error: !usernameValid}">
+            <input name="username" placeholder="Username" ng-model="username" ng-change="validate()" />
+          </div>
+          <button type="submit" ng-disabled="inputsInvalid">Join</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

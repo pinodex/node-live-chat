@@ -1,0 +1,19 @@
+{
+  "name": "node-live-chat",
+  "version": "1.0.0",
+  "description": "Live chat with Node.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raphael Marco <pinodex@outlook.ph>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.7",
+    "swig": "^1.4.2"
+  },
+  "engine": {
+    "node": "0.12.7"
+  }
+}

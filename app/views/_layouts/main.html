@@ -1,0 +1,32 @@
+{% if !xhr %}
+<!doctype html>
+<html lang="en" ng-app="nodeLiveChat">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Node Live Chat</title>
+  <link rel="stylesheet" type="text/css" href="/assets/css/layout.css" />
+</head>
+<body>
+  <ng-view></ng-view>
+
+  <script src="/assets/js/webfont.js"></script>
+  <script src="/assets/js/angular.js"></script>
+  <script src="/assets/js/angular-route.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Open+Sans:400,300']
+      }
+    });
+
+    var socketUrl = '//{{ host }}';
+  </script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/assets/js/chat.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>
+{% else %}
+  {% block body %}{% endblock %}
+{% endif %}
