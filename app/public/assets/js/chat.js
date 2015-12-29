@@ -69,7 +69,9 @@
       username: username
     });
 
-    this.socket.on('chat:login', callback || function() {});
+    if (callback) {
+      this.socket.on('chat:login', callback);
+    }
   };
 
   Chat.prototype.type = function(message) {
